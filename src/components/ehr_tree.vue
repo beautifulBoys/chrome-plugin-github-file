@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'tree',
   props: ['data'],
@@ -24,30 +25,19 @@ export default {
     return {};
   },
   methods: {
-    ajax (type, url, data, fun) {
-      type = type.toUpperCase();
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          if (fun) fun(xhr.response);
-        }
-      }
-      xhr.open(type, url, true);
-      xhr.setRequestHeader("Authorization", 'token 74291eabf84c59ea403883eafe6e15e88697170a');
-      xhr.setRequestHeader("X-PJAX", 'true');
-      xhr.setRequestHeader("X-PJAX-Container", '#js-repo-pjax-container, .context-loader-container, [data-pjax-container]');
-      xhr.setRequestHeader("X-Requested-With", 'XMLHttpRequest');
-      xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded; charset=UTF-8');
-      xhr.send(data);
-    },
+    ...mapActions(['pjax']),
     foldEvent () {
       if (this.data.info.file) {
-        this.ajax('get', this.data.info.aurl, {_pjax: '#js-repo-pjax-container, .context-loader-container, [data-pjax-container]'}, (res) => {
-          console.log(history);
-          document.getElementById('js-repo-pjax-container').innerHTML = res;
+        this.pjax({
+          type: 'get',
+          url: this.data.info.aurl,
+          data: {_pjax: '#js-repo-pjax-container, .context-loader-container, [data-pjax-container]'},
+          fun: (res) => {
+            document.getElementById('js-repo-pjax-container').innerHTML = res;
+          },
+          _this: this
         });
-      }
-      else this.data.info.fold = !this.data.info.fold;
+      } else this.data.info.fold = !this.data.info.fold;
     }
   }
 }

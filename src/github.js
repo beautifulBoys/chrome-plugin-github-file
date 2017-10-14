@@ -5,10 +5,8 @@ import randerHtml from './rander.js';
 import tree from './lib/tree.js';
 let bodyDom = document.getElementsByTagName('body')[0];
 var dom = document.createElement('nav');
-dom.setAttribute('id', 'contentDom'); // contentDom
-dom.innerHTML = '哈哈哈哈';
+dom.setAttribute('id', 'contentDom');
 bodyDom.appendChild(dom);
-console.log('github.js ----------- 开始运行了');
 
 chrome.extension.sendMessage({cmd: "hello"},function(response) {
   console.log('hello开始发送消息');
@@ -31,11 +29,15 @@ function getUrlInfo (tab) {
     user.name = master[0];
     if (master.length > 1) user.master = master[1]; // 带仓库
   }
-  if (user.master && user.name) {
+  if (user.master && user.name && ig(user.name)) {
     randerHtml({
       username: user.name,
       url: `https://api.github.com/repos/${user.name}/${user.master}/git/trees/master?recursive=1`,
       repository: user.master
     });
   }
+}
+function ig (user) {
+  var arr = ['settings'];
+  return arr.indexOf(user) === -1 ? true : false;
 }
