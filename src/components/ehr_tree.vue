@@ -21,12 +21,10 @@ export default {
   name: 'tree',
   props: ['data'],
   data () {
-    return {
-      ajaxStr: '?_pjax=%23js-repo-pjax-container%2C+.context-loader-container%2C+%5Bdata-pjax-container%5D'
-    };
+    return {};
   },
   methods: {
-    ajax (type, url, fun) {
+    ajax (type, url, data, fun) {
       type = type.toUpperCase();
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -35,17 +33,16 @@ export default {
         }
       }
       xhr.open(type, url, true);
-      xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader("Authorization", 'token 1bc9d882fb7131d0b9a89be53fa14a21113ca55a');
-      xhr.send(null);
+      xhr.setRequestHeader("Authorization", 'token 74291eabf84c59ea403883eafe6e15e88697170a');
+      xhr.setRequestHeader("X-PJAX", 'true');
+      xhr.setRequestHeader("X-PJAX-Container", '#js-repo-pjax-container, .context-loader-container, [data-pjax-container]');
+      xhr.setRequestHeader("X-Requested-With", 'XMLHttpRequest');
+      xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded; charset=UTF-8');
+      xhr.send(data);
     },
     foldEvent () {
-      // id=js-repo-pjax-container
-
       if (this.data.info.file) {
-        let urll = this.data.info.aurl;
-        // window.location.href = urll;
-        this.ajax('get', urll + this.ajaxStr, (res) => {
+        this.ajax('get', this.data.info.aurl, {_pjax: '#js-repo-pjax-container, .context-loader-container, [data-pjax-container]'}, (res) => {
           console.log(history);
           document.getElementById('js-repo-pjax-container').innerHTML = res;
         });

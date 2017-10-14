@@ -4,12 +4,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     count: 0,
-    object: {
-      username: 'beautifulBoys',
-      repository: 'vue-socket.io'
-    }
+    openStatus: false,
+    loading: false
   },
   mutations: {
+    openStatusEvent (state) {
+      state.openStatus = !state.openStatus;
+    },
+    loadingEvent (state, status) {
+      state.loading = status;
+    }
   },
   actions: {
   }
