@@ -58,6 +58,17 @@ export default (arr1, object) => {
     } else if (arr[i].info.size === 7) {
       if (arr[i].info.file) newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]] = arr[i].info.index;
       else newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]] = {$index: arr[i].info.index};
+    } else if (arr[i].info.size === 8) {
+      if (arr[i].info.file) newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]] = arr[i].info.index;
+      else newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]] = {$index: arr[i].info.index};
+    } else if (arr[i].info.size === 9) {
+      if (arr[i].info.file) newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]][arr[i].info.arr[8]] = arr[i].info.index;
+      else newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]][arr[i].info.arr[8]] = {$index: arr[i].info.index};
+    } else if (arr[i].info.size === 10) {
+      if (arr[i].info.file) newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]][arr[i].info.arr[8]][arr[i].info.arr[9]] = arr[i].info.index;
+      else newObj[arr[i].info.arr[0]][arr[i].info.arr[1]][arr[i].info.arr[2]][arr[i].info.arr[3]][arr[i].info.arr[4]][arr[i].info.arr[5]][arr[i].info.arr[6]][arr[i].info.arr[7]][arr[i].info.arr[8]][arr[i].info.arr[9]] = {$index: arr[i].info.index};
+    } else {
+      console.log('此处有问题，请检查');
     }
   }
 

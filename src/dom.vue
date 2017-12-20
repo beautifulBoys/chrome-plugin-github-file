@@ -18,7 +18,7 @@
           <!-- <a href="###">{{item.text}}</a> -->
           <div class="error-tip" v-show="errorTipStatus">
             令牌无效。按照 <a target="_blank" href="https://github.com/settings/tokens/new">此链接</a> 创建一个新令牌并将其粘贴到下面。
-            <br/>
+            <br/><br/>
             <input type="text" v-model="token1"/>
             <button @click="saveClickEvent(token1)">保存</button>
           </div>
